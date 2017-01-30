@@ -22,7 +22,7 @@ require 'joseph/image_info'
 require 'joseph/image'
 require 'joseph/file_info'
 require 'joseph/project'
-require 'joseph/binding'
+require 'joseph/bridge'
 
 module Joseph
 end

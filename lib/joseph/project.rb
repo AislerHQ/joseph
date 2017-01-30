@@ -1,7 +1,7 @@
 module Joseph
   class Project < FFI::Struct
     def self.create(r = 0x00, g = 0x00, b = 0x00)
-      project = Binding.gerbv_create_project
+      project = Bridge.gerbv_create_project
       project[:background].red = r
       project[:background].green = g
       project[:background].blue = b
@@ -39,7 +39,7 @@ module Joseph
       [:red, :green, :blue, :alpha].each { |k, v| color[k] ||= 0xFF.to_gdk_color }
 
       last_ix = self[:last_loaded]
-      Binding.gerbv_open_layer_from_filename_with_color(self, file, color[:red], color[:green], color[:blue], color[:alpha])
+      Bridge.gerbv_open_layer_from_filename_with_color(self, file, color[:red], color[:green], color[:blue], color[:alpha])
       return false if self[:last_loaded] == last_ix # Return if file is invalid
 
       @index[name] = self[:last_loaded]
@@ -57,16 +57,16 @@ module Joseph
       dpi = args[:dpi] || 600 # HiDPI setting for high resolution screens
 
       if args[:bb] && args[:bb].valid?
-        Binding.gerbv_export_png_file_from_project(self, render_info(args[:bb], dpi, !!args[:mirror]), store.file)
+        Bridge.gerbv_export_png_file_from_project(self, render_info(args[:bb], dpi, !!args[:mirror]), store.file)
       else
-        Binding.gerbv_export_png_file_from_project_autoscaled(self, 1920, 1080, store.file)
+        Bridge.gerbv_export_png_file_from_project_autoscaled(self, 1920, 1080, store.file)
       end
 
       store
     end
 
     def destroy!
-      Binding.gerbv_destroy_project(self)
+      Bridge.gerbv_destroy_project(self)
     end
 
     private

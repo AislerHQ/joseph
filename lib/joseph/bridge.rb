@@ -1,5 +1,5 @@
 module Joseph
-  module Binding
+  module Bridge
     extend FFI::Library
     ffi_lib 'libgerbv'
 

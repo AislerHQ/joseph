@@ -32,7 +32,7 @@ module Joseph
     end
 
     def destroy!
-      Binding.gerbv_image_delete_net(self)
+      Bridge.gerbv_image_delete_net(self)
     end
   end
 end

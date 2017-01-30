@@ -1,7 +1,7 @@
 module Joseph
   class Image < FFI::Struct
     def self.create
-      Binding.gerbv_create_image nil, nil
+      Bridge.gerbv_create_image nil, nil
     end
 
     def self.memory_map
@@ -28,7 +28,7 @@ module Joseph
 
 
     def add(image, transformation = UserTransformation.new)
-      Binding.gerbv_image_copy_image(image.pointer, transformation.pointer, self.pointer)
+      Bridge.gerbv_image_copy_image(image.pointer, transformation.pointer, self.pointer)
 
       # Check if polarity reset is necessary
       return if image.last_layer[:polarity] == 2
@@ -37,12 +37,12 @@ module Joseph
       # Otherwise some strange memory issue occours when dumping the image
 
       # Reset polarity of both images
-      layer = Binding.gerbv_image_return_new_layer(last_layer)
+      layer = Bridge.gerbv_image_return_new_layer(last_layer)
       layer[:polarity] = 2 # Default polarity
 
       each_net do |net|
         if net[:next].null?
-          dummy = Binding.gerber_create_new_net(net, layer, nil)
+          dummy = Bridge.gerber_create_new_net(net, layer, nil)
           dummy[:interpolation] = 8 # Do not draw net / GERBV_INTERPOLATION_DELETED
         end
       end
@@ -51,14 +51,14 @@ module Joseph
     end
 
     def duplicate(transformation = nil)
-      Binding.gerbv_image_duplicate_image(self, transformation)
+      Bridge.gerbv_image_duplicate_image(self, transformation)
     end
 
     def to_output(store = Ramdo::Store.new)
       if rs274x?
-        Binding.gerbv_export_rs274x_file_from_image(store.file, self, UserTransformation.new)
+        Bridge.gerbv_export_rs274x_file_from_image(store.file, self, UserTransformation.new)
       elsif drill?
-        Binding.gerbv_export_drill_file_from_image(store.file, self, UserTransformation.new)
+        Bridge.gerbv_export_drill_file_from_image(store.file, self, UserTransformation.new)
       end
 
       store
@@ -137,7 +137,7 @@ module Joseph
     end
 
     def destroy!
-      Binding.gerbv_destroy_image(self)
+      Bridge.gerbv_destroy_image(self)
     end
   end
 end

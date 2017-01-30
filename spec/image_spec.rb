@@ -5,10 +5,10 @@ describe Project do
     image = Image.create
     expect(image.net_count).to eq(0)
 
-    Joseph::Binding.gerbv_image_create_line_object(image, 0, 0, 10, 10, 0.0, :circle)
-    Joseph::Binding.gerbv_image_create_line_object(image, 0, 0, 0, 10, 0.1, :circle)
-    Joseph::Binding.gerbv_image_create_rectangle_object(image, 5, 0, 1, 1)
-    Joseph::Binding.gerbv_image_create_arc_object(image, 0, 5, 1, 0, 360, 0.0, :circle)
+    Bridge.gerbv_image_create_line_object(image, 0, 0, 10, 10, 0.0, :circle)
+    Bridge.gerbv_image_create_line_object(image, 0, 0, 0, 10, 0.1, :circle)
+    Bridge.gerbv_image_create_rectangle_object(image, 5, 0, 1, 1)
+    Bridge.gerbv_image_create_arc_object(image, 0, 5, 1, 0, 360, 0.0, :circle)
     expect(image.net_count).to eq(7)
 
     output = image.to_output

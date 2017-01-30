@@ -11,6 +11,7 @@ Integer.include CoreExtensions::Integer::Conversions
 require 'joseph/gdk_color'
 require 'joseph/cirseg'
 require 'joseph/render_size'
+require 'joseph/render_info'
 require 'joseph/net'
 require 'joseph/user_transformation'
 require 'joseph/aperture'

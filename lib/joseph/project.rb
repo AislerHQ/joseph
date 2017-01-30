@@ -40,9 +40,8 @@ module Joseph
 
       last_ix = self[:last_loaded]
       Binding.gerbv_open_layer_from_filename_with_color(self, file, color[:red], color[:green], color[:blue], color[:alpha])
-      return if self[:last_loaded] == last_ix # Return if file is invalid
+      return false if self[:last_loaded] == last_ix # Return if file is invalid
 
-      file = file(self[:last_loaded])
       @index[name] = self[:last_loaded]
     end
 

@@ -77,13 +77,13 @@ module Joseph
 
       right, left, top, bottom = 0, 0, 0, 0
       if mirror
-        right, left, top, bottom = -@bb[:left], -@bb[:right], @bb[:top], @bb[:bottom]
+        right, left, top, bottom = -bb[:left], -bb[:right], bb[:top], bb[:bottom]
       else
-        right, left, top, bottom = @bb[:right], @bb[:left], @bb[:top], @bb[:bottom]
+        right, left, top, bottom = bb[:right], bb[:left], bb[:top], bb[:bottom]
       end
 
-      info[:display_width] = dpi * @width
-      info[:display_height] = dpi * @height
+      info[:display_width] = dpi * (bb[:right] - bb[:left]).abs
+      info[:display_height] = dpi * (bb[:top] - bb[:bottom]).abs
       info[:scale_factor_x] = dpi
       info[:scale_factor_y] = dpi
       info[:lower_left_x] = left

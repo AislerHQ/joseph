@@ -57,8 +57,8 @@ module Joseph
       store = args[:store] || Ramdo::Store.new
       dpi = args[:dpi] || 600 # HiDPI setting for high resolution screens
 
-      if args[:bb]
-        Binding.gerbv_export_png_file_from_project(self, render_info(args[:bb], dpi, mirror), store.file)
+      if args[:bb] && args[:bb].valid?
+        Binding.gerbv_export_png_file_from_project(self, render_info(args[:bb], dpi, !!args[:mirror]), store.file)
       else
         Binding.gerbv_export_png_file_from_project_autoscaled(self, 1920, 1080, store.file)
       end

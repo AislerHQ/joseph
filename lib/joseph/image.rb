@@ -29,6 +29,9 @@ module Joseph
 
     def add(image, transformation = UserTransformation.new)
       Binding.gerbv_image_copy_image(image.pointer, transformation.pointer, self.pointer)
+
+      # Check if polarity reset is necessary
+      return if image.last_layer[:polarity] == 2
       # As Gerbv does not reset polarity, we add another 'dummy' layer with dark polarity
       # Afterwards a zero flash is created and associated to the new created layer
       # Otherwise some strange memory issue occours when dumping the image

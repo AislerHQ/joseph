@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Project, focus: true do
+describe Project do
   it 'should create a new project and add a file' do
     project = Project.create
     expect(project).to be_a(Project)

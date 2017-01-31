@@ -29,6 +29,22 @@ module Joseph
     def height
       (self[:top] - self[:bottom]).abs
     end
+
+    def left
+      self[:left]
+    end
+
+    def right
+      self[:right]
+    end
+
+    def top
+      self[:top]
+    end
+
+    def bottom
+      self[:bottom]
+    end
   end
 
 end

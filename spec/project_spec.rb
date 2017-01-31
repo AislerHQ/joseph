@@ -11,12 +11,21 @@ describe Project do
     expect(project.file(:bottomlayer)).to be_falsey
   end
 
-  it 'should create a project and export it to PNG' do
+  it 'should export a project to PNG' do
     project = Project.create
     project.add_file('./spec/assets/3_hat.toplayer.ger', :toplayer)
 
     output = project.to_png
     expect(output.data).to be_same_image_as(IO.read('./spec/results/toplayer_as_png.png'))
+  end
+
+  it 'should export a project mirrored with bounding box to PNG' do
+    project = Project.create
+    project.add_file('./spec/assets/3_hat.bottomlayer.ger', :bottomlayer)
+    project.file(0)[:transform][:mirror_around_y] = 1
+
+    output = project.to_png(mirror: true, bb: RenderSize.from_image(project.file(0).image))
+    expect(output.data).to be_same_image_as(IO.read('./spec/results/bottomlayer_mirrored.png'))
   end
 
 end

@@ -74,19 +74,12 @@ module Joseph
       info = RenderInfo.new
       info[:render_type] = 3
 
-      right, left, top, bottom = 0, 0, 0, 0
-      if mirror
-        right, left, top, bottom = -bb[:left], -bb[:right], bb[:top], bb[:bottom]
-      else
-        right, left, top, bottom = bb[:right], bb[:left], bb[:top], bb[:bottom]
-      end
-
-      info[:display_width] = dpi * (bb[:right] - bb[:left]).abs
-      info[:display_height] = dpi * (bb[:top] - bb[:bottom]).abs
+      info[:display_width] = dpi * bb.width
+      info[:display_height] = dpi * bb.height
       info[:scale_factor_x] = dpi
       info[:scale_factor_y] = dpi
-      info[:lower_left_x] = left
-      info[:lower_left_y] = top
+      info[:lower_left_x] = mirror ? -bb.right : bb.left
+      info[:lower_left_y] = bb.top
 
       info
     end

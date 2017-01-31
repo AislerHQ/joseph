@@ -32,9 +32,9 @@ describe Project do
     expect(destination.net_count).to eq(2235)
 
     t = Benchmark.realtime do
-      100.times { |i| destination.add source }
+      200.times { |i| destination.add source }
     end
-    expect(t).to be <= 2
+    expect(t).to be <= 5
   end
 
   it 'should combine silkscreen' do

@@ -32,7 +32,7 @@ describe Project do
     expect(destination.net_count).to eq(2235)
 
     t = Benchmark.realtime do
-      200.times { |i| destination.add source }
+      100.times { |i| destination.add source }
     end
     expect(t).to be <= 5
   end

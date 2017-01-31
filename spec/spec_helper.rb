@@ -1,6 +1,7 @@
 require 'digest/md5'
 require 'chunky_png'
 require 'benchmark'
+require 'matrix'
 
 require 'joseph'
 include Joseph

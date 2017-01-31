@@ -28,4 +28,21 @@ describe Project do
     expect(output.data).to be_same_image_as(IO.read('./spec/results/bottomlayer_mirrored.png'))
   end
 
+  it 'should detect if file is invalid' do
+    project = Project.create
+    expect(project[:last_loaded]).to eq(-1)
+    project.add_file './spec/assets/test.EXTREP', :dummy # invalid file with invalid extension
+    expect(project[:last_loaded]).to eq(-1)
+    project.add_file './spec/assets/test_wrong.GBL', :dummy # invalid file with valid extension
+    expect(project[:last_loaded]).to eq(-1)
+    expect(project.index.length).to eq(0)
+    project.add_file './spec/assets/3_hat.toplayer.ger', :dummy # valid file
+    expect(project[:last_loaded]).to eq(0)
+    project.add_file './spec/assets/test.EXTREP', :dummy # invalid file with invalid extension
+    expect(project[:last_loaded]).to eq(0)
+    project.add_file './spec/assets/test_wrong.GBL', :dummy # invalid file with valid extension
+    expect(project[:last_loaded]).to eq(0)
+    expect(project.index.length).to eq(1)
+  end
+
 end

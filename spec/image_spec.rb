@@ -54,5 +54,22 @@ describe Project do
     expect(Digest::SHA1.hexdigest(output.data)).to eq('6eee0d137fa6c089a1c82a03fcc567cbbe06c1eb')
   end
 
+  it 'should create a new image an add layers' do
+    image = Image.create
+    expect(image.layer_count).to eq(1)
+    Bridge.gerbv_image_return_new_layer(image.last_layer)
+    expect(image.layer_count).to eq(2)
+    image.destroy!
+  end
+
+
+  it 'should get all nets and layers within an image', focus: true do
+    project = Project.create
+    project.add_file './spec/assets/3_hat.toplayer.ger', :toplayer
+    image = project.file(0).image
+    expect(image.net_count).to eq(2235)
+    expect(image.layer_count).to eq(2)
+    project.destroy!
+  end
 
 end

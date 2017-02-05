@@ -1,6 +1,6 @@
 # Joseph
 
-Make working with gerber files great again! See [talk @ FOSDEM 2017](https://docs.google.com/presentation/d/1P0TlYbtU38EL7d7HRAupMRoa70ejif5nWAY0IsgneYI/edit?usp=sharing) for more information.
+Make working with gerber files great again! See [our talk @ FOSDEM 2017](https://docs.google.com/presentation/d/1P0TlYbtU38EL7d7HRAupMRoa70ejif5nWAY0IsgneYI/edit?usp=sharing) or watch the recording at http://video.fosdem.org/2017/AW1.120/ruby_libgerbv.mp4 for more information.
 
 
 

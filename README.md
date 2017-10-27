@@ -35,4 +35,4 @@ redistributed under the terms specified in the MIT-LICENSE file.
 
 Joseph is developed and funded by AISLER B.V.
 
-Looking for industry quality and affordable PCBs, visit us at [AISLER GO](https://go.aisler.net)
+Looking for industry quality and affordable PCBs, visit us at [AISLER](https://aisler.net)

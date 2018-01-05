@@ -31,7 +31,7 @@ redistributed under the terms specified in the MIT-LICENSE file.
 
 ## About AISLER
 
-![AISLER](https://cdn-2.aisler.net/assets/logo_invert_orange-7ca49b7abecdf2f857639df2c0de142889a9dc23d33af4b9f875db54c0bc417e.png)
+![AISLER](https://cdn.aisler.net/assets/logo_invert_orange-7ca49b7abecdf2f857639df2c0de142889a9dc23d33af4b9f875db54c0bc417e.png)
 
 Joseph is developed and funded by AISLER B.V.
 
